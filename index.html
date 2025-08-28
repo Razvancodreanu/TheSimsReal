@@ -16,40 +16,40 @@
     <!-- Nevoi Personale -->
     <section>
         <h2>🧍 Nevoi Personale</h2>
+
         <div class="bar-container">
             <label for="food">🍽️ Food (3 mese)</label>
             <progress id="food" max="100" value="0"></progress>
-            <span id="foodPercent" class="percent">0%</span>
             <input type="number" id="foodInput" placeholder="mese azi" />
         </div>
+
         <div class="bar-container">
             <label for="water">💧 Water (2L)</label>
             <progress id="water" max="100" value="0"></progress>
-            <span id="waterPercent" class="percent">0%</span>
             <input type="number" id="waterInput" placeholder="litri azi" />
         </div>
+
         <div class="bar-container">
             <label for="sleep">😴 Sleep (8h)</label>
             <progress id="sleep" max="100" value="0"></progress>
-            <span id="sleepPercent" class="percent">0%</span>
             <input type="number" id="sleepInput" placeholder="ore dormite" />
         </div>
+
         <div class="bar-container">
             <label for="sport">🏃 Sport (1h)</label>
             <progress id="sport" max="100" value="0"></progress>
-            <span id="sportPercent" class="percent">0%</span>
             <input type="number" id="sportInput" placeholder="ore activitate" />
         </div>
+
         <div class="bar-container">
             <label for="steps">👣 Steps (10.000)</label>
             <progress id="steps" max="100" value="0"></progress>
-            <span id="stepsPercent" class="percent">0%</span>
             <input type="number" id="stepsInput" placeholder="pași azi" />
         </div>
+
         <div class="bar-container">
             <label for="nevoi">Scor General Nevoi</label>
             <progress id="nevoi" max="100" value="0"></progress>
-            <span id="nevoiPercent" class="percent">0%</span>
         </div>
     </section>
 
@@ -57,57 +57,9 @@
     <section>
         <h2>💬 Relații</h2>
         <div class="bar-container">
-            <label for="mama">👩 Mama</label>
-            <progress id="mama" max="200" value="0"></progress>
-            <span id="mamaPercent" class="percent">0%</span>
-            <input type="number" id="mamaInput" min="1" max="10" placeholder="max 10" />
-            <select id="mamaTip">
-                <option value="emotionala">Emoțională</option>
-                <option value="practica">Practică</option>
-                <option value="superficiala">Superficială</option>
-                <option value="cearta">Ceartă</option>
-            </select>
-        </div>
-        <div class="bar-container">
-            <label for="tata">👨 Tata</label>
-            <progress id="tata" max="200" value="0"></progress>
-            <span id="tataPercent" class="percent">0%</span>
-            <input type="number" id="tataInput" min="1" max="10" placeholder="max 10" />
-            <select id="tataTip">
-                <option value="emotionala">Emoțională</option>
-                <option value="practica">Practică</option>
-                <option value="superficiala">Superficială</option>
-                <option value="cearta">Ceartă</option>
-            </select>
-        </div>
-        <div class="bar-container">
-            <label for="prieteni">🧑‍🤝‍🧑 Prieteni</label>
-            <progress id="prieteni" max="200" value="0"></progress>
-            <span id="prieteniPercent" class="percent">0%</span>
-            <input type="number" id="prieteniInput" min="1" max="10" placeholder="max 10" />
-            <select id="prieteniTip">
-                <option value="emotionala">Emoțională</option>
-                <option value="practica">Practică</option>
-                <option value="superficiala">Superficială</option>
-                <option value="cearta">Ceartă</option>
-            </select>
-        </div>
-        <div class="bar-container">
-            <label for="extinsa">👨‍👩‍👧‍👦 Familie extinsă</label>
-            <progress id="extinsa" max="200" value="0"></progress>
-            <span id="extinsaPercent" class="percent">0%</span>
-            <input type="number" id="extinsaInput" min="1" max="10" placeholder="max 10" />
-            <select id="extinsaTip">
-                <option value="emotionala">Emoțională</option>
-                <option value="practica">Practică</option>
-                <option value="superficiala">Superficială</option>
-                <option value="cearta">Ceartă</option>
-            </select>
-        </div>
-        <div class="bar-container">
-            <label for="relatii">Scor General Relații</label>
-            <progress id="relatii" max="100" value="0"></progress>
-            <span id="relatiiPercent" class="percent">0%</span>
+            <label for="relatii">Nivel Relații</label>
+            <progress id="relatii" max="100" value="50"></progress>
+            <input type="number" id="relatiiInput" placeholder="+/-" />
         </div>
     </section>
 
@@ -117,12 +69,11 @@
         <div class="bar-container">
             <label for="cariera">Nivel Carieră</label>
             <progress id="cariera" max="100" value="50"></progress>
-            <span id="carieraPercent" class="percent">50%</span>
             <input type="number" id="carieraInput" placeholder="+/-" />
         </div>
     </section>
 
-    <button onclick="updateBars()">✅ Actualizează</button>
+    <button onclick="updateBars()">Actualizează</button>
     <div id="suggestions" class="suggestions"></div>
     <canvas id="progressChart" style="margin-top: 20px;"></canvas>
 </body>

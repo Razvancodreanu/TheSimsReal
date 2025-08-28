@@ -1,165 +1,184 @@
-/* Structură generală */
-body {
-    font - family: Arial, sans - serif;
-    background - color: #f0f4f8;
-    padding: 20px;
-    max - width: 700px;
-    margin: auto;
+const subNevoi = [
+    { id: "food", target: 3 },
+    { id: "water", target: 2 },
+    { id: "sleep", target: 8 },
+    { id: "sport", target: 1 },
+    { id: "steps", target: 10000 }
+];
+
+const bars = ['nevoi', 'relatii', 'cariera'];
+
+function updateBars() {
+    let total = 0;
+
+    subNevoi.forEach(nevoie => {
+        const input = document.getElementById(nevoie.id + "Input");
+        const bar = document.getElementById(nevoie.id);
+        const val = parseFloat(input.value);
+        if (!isNaN(val)) {
+            const percent = Math.min(100, Math.round((val / nevoie.target) * 100));
+            bar.value = percent;
+            localStorage.setItem(nevoie.id, percent);
+            saveHistory(nevoie.id, percent);
+            input.value = "";
+        }
+        total += parseInt(bar.value);
+    });
+
+    const scorGeneral = Math.round(total / subNevoi.length);
+    document.getElementById("nevoi").value = scorGeneral;
+    localStorage.setItem("nevoi", scorGeneral);
+    saveHistory("nevoi", scorGeneral);
+
+    ['relatii', 'cariera'].forEach(bar => {
+        const input = document.getElementById(bar + 'Input');
+        const progress = document.getElementById(bar);
+        const change = parseInt(input.value);
+        if (!isNaN(change)) {
+            let newValue = Math.min(100, Math.max(0, progress.value + change));
+            progress.value = newValue;
+            localStorage.setItem(bar, newValue);
+            saveHistory(bar, newValue);
+            input.value = '';
+        }
+    });
+
+    localStorage.setItem('lastUpdate', new Date().toISOString().split('T')[0]);
+    showSuggestions();
+    document.getElementById('progressChart').remove();
+    const newCanvas = document.createElement('canvas');
+    newCanvas.id = 'progressChart';
+    newCanvas.style.marginTop = '20px';
+    document.body.appendChild(newCanvas);
+    updateChart();
 }
 
-h1 {
-    text - align: center;
-    color: #333;
-    margin - bottom: 30px;
+function loadProgress() {
+    [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
+        const saved = localStorage.getItem(bar);
+        if (saved !== null) {
+            document.getElementById(bar).value = parseInt(saved);
+        }
+    });
+    checkDailyDecay();
+    updateChart();
+    showSuggestions();
 }
 
-section {
-    margin - bottom: 40px;
-}
+function checkDailyDecay() {
+    const today = new Date().toISOString().split('T')[0];
+    const lastUpdate = localStorage.getItem('lastUpdate') || today;
 
-h2 {
-    margin - top: 30px;
-    color: #444;
-    text - align: center;
-    font - size: 22px;
-}
-
-/* Container pentru fiecare bară */
-.bar - container {
-    margin - bottom: 20px;
-    padding: 10px 0;
-    border - bottom: 1px solid #ddd;
-}
-
-/* Etichete */
-label {
-    display: block;
-    margin - bottom: 5px;
-    font - weight: bold;
-    color: #333;
-}
-
-/* Bare de progres */
-progress {
-    width: 100 %;
-    height: 20px;
-    appearance: none;
-    border - radius: 5px;
-    overflow: hidden;
-}
-
-progress:: -webkit - progress - bar {
-    background - color: #e0e0e0;
-    border - radius: 5px;
-}
-
-progress:: -webkit - progress - value {
-    background - color: #0077cc;
-    border - radius: 5px;
-}
-
-/* Inputuri și selectoare */
-input[type = "number"],
-    select {
-    margin - top: 5px;
-    padding: 6px;
-    width: 120px;
-    font - size: 14px;
-    border: 1px solid #ccc;
-    border - radius: 4px;
-}
-
-input::placeholder {
-    color: #999;
-    font - style: italic;
-}
-
-/* Buton principal */
-button {
-    display: block;
-    width: 100 %;
-    padding: 12px;
-    background - color: #0077cc;
-    color: white;
-    border: none;
-    border - radius: 6px;
-    font - size: 16px;
-    margin - top: 30px;
-    transition: background - color 0.2s ease, transform 0.1s ease;
-}
-
-button:hover {
-    background - color: #006bbd;
-    cursor: pointer;
-}
-
-button:active {
-    transform: scale(0.98);
-    background - color: #005fa3;
-}
-
-/* Procentaj lângă bare */
-.percent {
-    margin - left: 10px;
-    font - weight: bold;
-    font - size: 14px;
-}
-
-.percent.red {
-    color: #d32f2f;
-}
-
-.percent.yellow {
-    color: #fbc02d;
-}
-
-.percent.blue {
-    color: #1976d2;
-}
-
-/* Sugestii */
-.suggestions {
-    margin - top: 20px;
-    padding: 12px;
-    background - color: #e0f7fa;
-    border - radius: 6px;
-    text - align: center;
-    font - style: italic;
-    color: #0077cc;
-    font - size: 15px;
-}
-
-/* Feedback (opțional) */
-.feedback {
-    margin - top: 10px;
-    padding: 10px;
-    background - color: #fff3cd;
-    border - left: 5px solid #ffecb5;
-    font - size: 14px;
-    color: #856404;
-    border - radius: 5px;
-}
-
-/* Grafic */
-canvas {
-    width: 100 % !important;
-    height: auto!important;
-    margin - top: 20px;
-}
-
-/* Responsive */
-@media screen and(max - width: 500px) {
-    input[type = "number"],
-        select {
-        width: 100 %;
-    }
-
-  button {
-        font - size: 15px;
-    }
-
-  .percent {
-        display: block;
-        margin - top: 5px;
+    if (lastUpdate !== today) {
+        [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
+            const progress = document.getElementById(bar);
+            let newValue = Math.max(0, progress.value - 10);
+            progress.value = newValue;
+            localStorage.setItem(bar, newValue);
+            saveHistory(bar, newValue);
+        });
+        localStorage.setItem('lastUpdate', today);
     }
 }
+
+function saveHistory(bar, value) {
+    const today = new Date().toISOString().split('T')[0];
+    let history = JSON.parse(localStorage.getItem(bar + '_history') || '{}');
+    history[today] = value;
+    localStorage.setItem(bar + '_history', JSON.stringify(history));
+}
+
+function updateChart() {
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    const dates = [];
+    const data = {};
+
+    [...subNevoi.map(n => n.id), ...bars].forEach(bar => data[bar] = []);
+
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        dates.push(date.toISOString().split('T')[0]);
+    }
+
+    [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
+        const history = JSON.parse(localStorage.getItem(bar + '_history') || '{}');
+        dates.forEach(date => {
+            data[bar].push(history[date] || 0);
+        });
+    });
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [...subNevoi.map(n => ({
+                label: n.id.charAt(0).toUpperCase() + n.id.slice(1),
+                data: data[n.id],
+                borderColor: randomColor(),
+                backgroundColor: 'rgba(0,0,0,0.1)',
+                fill: true
+            })), {
+                label: 'Nevoi Generale',
+                data: data.nevoi,
+                borderColor: '#ff6384',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true
+            }, {
+                label: 'Relații',
+                data: data.relatii,
+                borderColor: '#36a2eb',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true
+            }, {
+                label: 'Carieră',
+                data: data.cariera,
+                borderColor: '#4bc0c0',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+}
+
+function randomColor() {
+    const colors = ['#ff6384', '#36a2eb', '#4bc0c0', '#9966ff', '#ff9f40'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function showSuggestions() {
+    const suggestions = [];
+
+    subNevoi.forEach(n => {
+        const val = parseInt(document.getElementById(n.id).value);
+        if (val < 50) {
+            if (n.id === 'food') suggestions.push('🍽️ Mănâncă o masă sănătoasă!');
+            if (n.id === 'water') suggestions.push('💧 Bea mai multă apă!');
+            if (n.id === 'sleep') suggestions.push('😴 Dormi mai mult!');
+            if (n.id === 'sport') suggestions.push('🏃 Fă puțină mișcare!');
+            if (n.id === 'steps') suggestions.push('👣 Ieși la o plimbare!');
+        }
+    });
+
+    const relatiiVal = parseInt(document.getElementById('relatii').value);
+    const carieraVal = parseInt(document.getElementById('cariera').value);
+
+    if (relatiiVal < 50) suggestions.push('💬 Relații jos: sună un prieten!');
+    if (carieraVal < 50) suggestions.push('💼 Carieră jos: fă un pas mic azi!');
+
+    const suggestionDiv = document.getElementById('suggestions');
+    suggestionDiv.textContent = suggestions.length > 0 ? suggestions.join(' ') : 'Totul e echilibrat!';
+}
+
+window.onload = () => {
+    loadProgress();
+};
