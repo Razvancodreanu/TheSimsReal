@@ -73,37 +73,21 @@ button:active {
     background-color: #005fa3;
 }
 
-button.conflict {
-    background-color: #d32f2f;
-    color: white;
-    margin-top: 5px;
-    font-size: 14px;
-    border: none;
-    padding: 6px;
-    border-radius: 4px;
-}
-
-button.conflict:hover {
-    background-color: #b71c1c;
-    cursor: pointer;
-}
-
 .percent {
     margin-left: 10px;
     font-weight: bold;
-    color: #333;
-}
-
-.percent.green {
-    color: #2e7d32;
-}
-
-.percent.yellow {
-    color: #f9a825;
 }
 
 .percent.red {
-    color: #c62828;
+    color: #d32f2f;
+}
+
+.percent.yellow {
+    color: #fbc02d;
+}
+
+.percent.blue {
+    color: #1976d2;
 }
 
 .suggestions {
