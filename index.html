@@ -36,9 +36,9 @@
         </div>
 
         <div class="bar-container">
-            <label for="sport">🏃 Sport (1h)</label>
+            <label for="sport">🏃 Sport (60 min)</label>
             <progress id="sport" max="100" value="0"></progress>
-            <input type="number" id="sportInput" placeholder="ore activitate" />
+            <input type="number" id="sportInput" placeholder="minute activitate" />
         </div>
 
         <div class="bar-container">
@@ -53,6 +53,34 @@
         </div>
     </section>
 
+    <!-- Carieră -->
+    <section>
+        <h2>💼 Carieră</h2>
+
+        <div class="bar-container">
+            <label for="video">🎥 Video (1h)</label>
+            <progress id="video" max="100" value="0"></progress>
+            <input type="number" id="videoInput" placeholder="minute video" />
+        </div>
+
+        <div class="bar-container">
+            <label for="munca">💻 Muncă practică (2h)</label>
+            <progress id="munca" max="100" value="0"></progress>
+            <input type="number" id="muncaInput" placeholder="minute muncă" />
+        </div>
+
+        <div class="bar-container">
+            <label for="citit">📚 Citit (1h)</label>
+            <progress id="citit" max="100" value="0"></progress>
+            <input type="number" id="cititInput" placeholder="minute citit" />
+        </div>
+
+        <div class="bar-container">
+            <label for="cariera">Scor General Carieră</label>
+            <progress id="cariera" max="100" value="0"></progress>
+        </div>
+    </section>
+
     <!-- Relații -->
     <section>
         <h2>💬 Relații</h2>
@@ -60,16 +88,6 @@
             <label for="relatii">Nivel Relații</label>
             <progress id="relatii" max="100" value="50"></progress>
             <input type="number" id="relatiiInput" placeholder="+/-" />
-        </div>
-    </section>
-
-    <!-- Carieră -->
-    <section>
-        <h2>💼 Carieră</h2>
-        <div class="bar-container">
-            <label for="cariera">Nivel Carieră</label>
-            <progress id="cariera" max="100" value="50"></progress>
-            <input type="number" id="carieraInput" placeholder="+/-" />
         </div>
     </section>
 
