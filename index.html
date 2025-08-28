@@ -16,68 +16,68 @@
     <!-- Nevoi Personale -->
     <section>
         <h2>🧍 Nevoi Personale</h2>
-
         <div class="bar-container">
             <label for="food">🍽️ Food (3 mese)</label>
             <progress id="food" max="100" value="0"></progress>
+            <span id="foodPercent" class="percent">0%</span>
             <input type="number" id="foodInput" placeholder="mese azi" />
         </div>
-
         <div class="bar-container">
             <label for="water">💧 Water (2L)</label>
             <progress id="water" max="100" value="0"></progress>
+            <span id="waterPercent" class="percent">0%</span>
             <input type="number" id="waterInput" placeholder="litri azi" />
         </div>
-
         <div class="bar-container">
             <label for="sleep">😴 Sleep (8h)</label>
             <progress id="sleep" max="100" value="0"></progress>
+            <span id="sleepPercent" class="percent">0%</span>
             <input type="number" id="sleepInput" placeholder="ore dormite" />
         </div>
-
         <div class="bar-container">
             <label for="sport">🏃 Sport (60 min)</label>
             <progress id="sport" max="100" value="0"></progress>
+            <span id="sportPercent" class="percent">0%</span>
             <input type="number" id="sportInput" placeholder="minute activitate" />
         </div>
-
         <div class="bar-container">
             <label for="steps">👣 Steps (10.000)</label>
             <progress id="steps" max="100" value="0"></progress>
+            <span id="stepsPercent" class="percent">0%</span>
             <input type="number" id="stepsInput" placeholder="pași azi" />
         </div>
-
         <div class="bar-container">
             <label for="nevoi">Scor General Nevoi</label>
             <progress id="nevoi" max="100" value="0"></progress>
+            <span id="nevoiPercent" class="percent">0%</span>
         </div>
     </section>
 
     <!-- Carieră -->
     <section>
         <h2>💼 Carieră</h2>
-
         <div class="bar-container">
             <label for="video">🎥 Video (1h)</label>
             <progress id="video" max="100" value="0"></progress>
+            <span id="videoPercent" class="percent">0%</span>
             <input type="number" id="videoInput" placeholder="minute video" />
         </div>
-
         <div class="bar-container">
             <label for="munca">💻 Muncă practică (2h)</label>
             <progress id="munca" max="100" value="0"></progress>
+            <span id="muncaPercent" class="percent">0%</span>
             <input type="number" id="muncaInput" placeholder="minute muncă" />
         </div>
-
         <div class="bar-container">
             <label for="citit">📚 Citit (1h)</label>
             <progress id="citit" max="100" value="0"></progress>
+            <span id="cititPercent" class="percent">0%</span>
             <input type="number" id="cititInput" placeholder="minute citit" />
         </div>
-
         <div class="bar-container">
             <label for="cariera">Scor General Carieră</label>
             <progress id="cariera" max="100" value="0"></progress>
+            <span id="carieraPercent" class="percent">0%</span>
         </div>
     </section>
 
@@ -85,13 +85,64 @@
     <section>
         <h2>💬 Relații</h2>
         <div class="bar-container">
-            <label for="relatii">Nivel Relații</label>
+            <label for="mama">👩 Mama</label>
+            <progress id="mama" max="100" value="50"></progress>
+            <span id="mamaPercent" class="percent">50%</span>
+            <input type="number" id="mamaInput" placeholder="nr conversații" />
+            <select id="mamaTip">
+                <option value="2">Superficială</option>
+                <option value="5">Practică</option>
+                <option value="10">Emoțională</option>
+            </select>
+            <button onclick="certConflict('mama')" class="conflict">⚠️ Ne-am certat cu mama</button>
+        </div>
+
+        <div class="bar-container">
+            <label for="tata">👨 Tata</label>
+            <progress id="tata" max="100" value="50"></progress>
+            <span id="tataPercent" class="percent">50%</span>
+            <input type="number" id="tataInput" placeholder="nr conversații" />
+            <select id="tataTip">
+                <option value="2">Superficială</option>
+                <option value="5">Practică</option>
+                <option value="10">Emoțională</option>
+            </select>
+            <button onclick="certConflict('tata')" class="conflict">⚠️ Ne-am certat cu tata</button>
+        </div>
+
+        <div class="bar-container">
+            <label for="prieteni">🧑‍🤝‍🧑 Prieteni</label>
+            <progress id="prieteni" max="100" value="50"></progress>
+            <span id="prieteniPercent" class="percent">50%</span>
+            <input type="number" id="prieteniInput" placeholder="nr conversații" />
+            <select id="prieteniTip">
+                <option value="2">Superficială</option>
+                <option value="5">Practică</option>
+                <option value="10">Emoțională</option>
+            </select>
+        </div>
+
+        <div class="bar-container">
+            <label for="extinsa">👨‍👩‍👧‍👦 Familie extinsă</label>
+            <progress id="extinsa" max="100" value="50"></progress>
+            <span id="extinsaPercent" class="percent">50%</span>
+            <input type="number" id="extinsaInput" placeholder="nr conversații" />
+            <select id="extinsaTip">
+                <option value="2">Superficială</option>
+                <option value="5">Practică</option>
+                <option value="10">Emoțională</option>
+            </select>
+        </div>
+
+        <div class="bar-container">
+            <label for="relatii">Scor General Relații</label>
             <progress id="relatii" max="100" value="50"></progress>
-            <input type="number" id="relatiiInput" placeholder="+/-" />
+            <span id="relatiiPercent" class="percent">50%</span>
         </div>
     </section>
 
-    <button onclick="updateBars()">Actualizează</button>
+    <button onclick="updateBars()">✅ Actualizează</button>
+    <div id="feedback" class="feedback"></div>
     <div id="suggestions" class="suggestions"></div>
     <canvas id="progressChart" style="margin-top: 20px;"></canvas>
 </body>

@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f4f8;
     padding: 20px;
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
 }
 
@@ -35,15 +35,17 @@ label {
 progress {
     width: 100%;
     height: 20px;
+    vertical-align: middle;
 }
 
-input[type="number"] {
-    width: 100px;
+input[type="number"],
+select {
     margin-top: 5px;
     padding: 5px;
+    width: 120px;
 }
 
-input[type="number"]::placeholder {
+input::placeholder {
     color: #999;
     font-style: italic;
 }
@@ -57,6 +59,51 @@ button {
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #006bbd;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+    background-color: #005fa3;
+}
+
+button.conflict {
+    background-color: #d32f2f;
+    color: white;
+    margin-top: 5px;
+    font-size: 14px;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+button.conflict:hover {
+    background-color: #b71c1c;
+    cursor: pointer;
+}
+
+.percent {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.percent.green {
+    color: #2e7d32;
+}
+
+.percent.yellow {
+    color: #f9a825;
+}
+
+.percent.red {
+    color: #c62828;
 }
 
 .suggestions {
@@ -67,6 +114,16 @@ button {
     text-align: center;
     font-style: italic;
     color: #0077cc;
+}
+
+.feedback {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff3cd;
+    border-left: 5px solid #ffecb5;
+    font-size: 14px;
+    color: #856404;
+    border-radius: 5px;
 }
 
 canvas {
