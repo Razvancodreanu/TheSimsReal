@@ -1,75 +1,55 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    max-width: 500px;
-    margin: auto;
+    background-color: #f4f4f9;
 }
 
-h1 {
-    text-align: center;
+h1,
+h2 {
     color: #333;
-    margin-bottom: 30px;
 }
 
 section {
-    margin-bottom: 40px;
-}
-
-h2 {
-    margin-top: 30px;
-    color: #444;
-    text-align: center;
+    margin-bottom: 30px;
 }
 
 .bar-container {
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    flex: 1;
+    margin-right: 10px;
+    font-size: 1.1em;
 }
 
 progress {
-    width: 100%;
+    flex: 2;
     height: 20px;
+    margin-right: 10px;
 }
 
 input[type="number"] {
-    width: 100px;
-    margin-top: 5px;
+    flex: 1;
     padding: 5px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-input[type="number"]::placeholder {
-    color: #999;
-    font-style: italic;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.suggestions {
+#suggestions {
     margin-top: 20px;
     padding: 10px;
     background-color: #e0f7fa;
-    border-radius: 5px;
-    text-align: center;
-    font-style: italic;
-    color: #0077cc;
+    border-radius: 4px;
+    font-size: 1.1em;
 }
 
-canvas {
-    width: 100% !important;
-    height: auto !important;
+#progressChart {
+    max-width: 100%;
+    height: auto;
 }

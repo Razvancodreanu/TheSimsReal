@@ -2,80 +2,103 @@
 <html lang="ro">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Sims Real</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Progress Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <h1>The Sims Real</h1>
+    <header>
+        <h1>Personal Progress Tracker</h1>
+        <button id="theme-toggle">Toggle Dark Mode</button>
+    </header>
 
-    <!-- Nevoi Personale -->
-    <section>
-        <h2>🧍 Nevoi Personale</h2>
+    <main class="container">
+        <!-- Nevoi Personale -->
+        <section class="glass-card">
+            <h2>🧍 Nevoi Personale</h2>
+            <div class="bar-container">
+                <label for="food">🍽️ Mâncare (3 mese)</label>
+                <progress id="food" max="100" value="0"></progress>
+                <input type="number" id="foodInput" placeholder="număr mese" />
+            </div>
+            <div class="bar-container">
+                <label for="water">💧 Apă (2L)</label>
+                <progress id="water" max="100" value="0"></progress>
+                <input type="number" id="waterInput" placeholder="litri apă" />
+            </div>
+            <div class="bar-container">
+                <label for="sleep">😴 Somn (8h)</label>
+                <progress id="sleep" max="100" value="0"></progress>
+                <input type="number" id="sleepInput" placeholder="ore somn" />
+            </div>
+            <div class="bar-container">
+                <label for="sport">🏃 Sport (60 min)</label>
+                <progress id="sport" max="100" value="0"></progress>
+                <input type="number" id="sportInputMinutes" placeholder="minute activitate" />
+            </div>
+            <div class="bar-container">
+                <label for="steps">👣 Pași (10,000)</label>
+                <progress id="steps" max="100" value="0"></progress>
+                <input type="number" id="stepsInput" placeholder="număr pași" />
+            </div>
+            <div class="bar-container overall">
+                <label for="nevoi">Scor General Nevoi</label>
+                <progress id="nevoi" max="100" value="0"></progress>
+            </div>
+        </section>
 
-        <div class="bar-container">
-            <label for="food">🍽️ Food (3 mese)</label>
-            <progress id="food" max="100" value="0"></progress>
-            <input type="number" id="foodInput" placeholder="mese azi" />
+        <!-- Carieră -->
+        <section class="glass-card">
+            <h2>💼 Carieră</h2>
+            <div class="bar-container">
+                <label for="video">🎥 Video (60 min)</label>
+                <progress id="video" max="100" value="0"></progress>
+                <input type="number" id="videoInput" placeholder="minute video" />
+            </div>
+            <div class="bar-container">
+                <label for="munca">💻 Muncă practică (120 min)</label>
+                <progress id="munca" max="100" value="0"></progress>
+                <input type="number" id="muncaInput" placeholder="minute muncă" />
+            </div>
+            <div class="bar-container">
+                <label for="citit">📚 Citit (60 min)</label>
+                <progress id="citit" max="100" value="0"></progress>
+                <input type="number" id="cititInput" placeholder="minute citit" />
+            </div>
+            <div class="bar-container overall">
+                <label for="cariera">Scor General Carieră</label>
+                <progress id="cariera" max="100" value="0"></progress>
+            </div>
+        </section>
+
+        <!-- Relații -->
+        <section class="glass-card">
+            <h2>💬 Relații</h2>
+            <div class="bar-container">
+                <label for="relatii">Nivel Relații</label>
+                <progress id="relatii" max="100" value="50"></progress>
+                <input type="number" id="relatiiInput" placeholder="+/-" />
+            </div>
+        </section>
+
+        <button id="update-button">Update Progress</button>
+
+        <!-- Suggestions -->
+        <div id="suggestions" class="glass-card suggestions">Totul e echilibrat!</div>
+
+        <!-- Chart -->
+        <div class="glass-card chart-container">
+            <canvas id="progressChart"></canvas>
         </div>
+    </main>
 
-        <div class="bar-container">
-            <label for="water">💧 Water (2L)</label>
-            <progress id="water" max="100" value="0"></progress>
-            <input type="number" id="waterInput" placeholder="litri azi" />
-        </div>
-
-        <div class="bar-container">
-            <label for="sleep">😴 Sleep (8h)</label>
-            <progress id="sleep" max="100" value="0"></progress>
-            <input type="number" id="sleepInput" placeholder="ore dormite" />
-        </div>
-
-        <div class="bar-container">
-            <label for="sport">🏃 Sport (1h)</label>
-            <progress id="sport" max="100" value="0"></progress>
-            <input type="number" id="sportInput" placeholder="ore activitate" />
-        </div>
-
-        <div class="bar-container">
-            <label for="steps">👣 Steps (10.000)</label>
-            <progress id="steps" max="100" value="0"></progress>
-            <input type="number" id="stepsInput" placeholder="pași azi" />
-        </div>
-
-        <div class="bar-container">
-            <label for="nevoi">Scor General Nevoi</label>
-            <progress id="nevoi" max="100" value="0"></progress>
-        </div>
-    </section>
-
-    <!-- Relații -->
-    <section>
-        <h2>💬 Relații</h2>
-        <div class="bar-container">
-            <label for="relatii">Nivel Relații</label>
-            <progress id="relatii" max="100" value="50"></progress>
-            <input type="number" id="relatiiInput" placeholder="+/-" />
-        </div>
-    </section>
-
-    <!-- Carieră -->
-    <section>
-        <h2>💼 Carieră</h2>
-        <div class="bar-container">
-            <label for="cariera">Nivel Carieră</label>
-            <progress id="cariera" max="100" value="50"></progress>
-            <input type="number" id="carieraInput" placeholder="+/-" />
-        </div>
-    </section>
-
-    <button onclick="updateBars()">Actualizează</button>
-    <div id="suggestions" class="suggestions"></div>
-    <canvas id="progressChart" style="margin-top: 20px;"></canvas>
+    <script src="script.js"></script>
 </body>
 
 </html>
