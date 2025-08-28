@@ -2,404 +2,80 @@
 <html lang="ro">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progres Personal</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .section {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-
-        input[type="number"] {
-            padding: 8px;
-            width: 100px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        progress {
-            width: 100%;
-            height: 20px;
-            transition: value 0.3s ease-in-out;
-        }
-
-        #suggestions {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e0f7fa;
-            border-radius: 4px;
-        }
-
-        #suggestions ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #suggestions li {
-            margin: 5px 0;
-        }
-
-        #progressChart {
-            margin-top: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Sims Real</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <h1>Progres Personal</h1>
+    <h1>The Sims Real</h1>
 
-    <div class="section">
-        <h2>Nevoi de bază</h2>
-        <label for="foodInput">Mâncare (țintă: 3 mese):</label>
-        <input type="number" id="foodInput" min="0" max="3" step="0.1" aria-label="Introdu numărul de mese">
-        <progress id="food" max="100" value="0"></progress>
+    <!-- Nevoi Personale -->
+    <section>
+        <h2>🧍 Nevoi Personale</h2>
 
-        <label for="waterInput">Apă (țintă: 2 litri):</label>
-        <input type="number" id="waterInput" min="0" max="2" step="0.1" aria-label="Introdu litrii de apă">
-        <progress id="water" max="100" value="0"></progress>
+        <div class="bar-container">
+            <label for="food">🍽️ Food (3 mese)</label>
+            <progress id="food" max="100" value="0"></progress>
+            <input type="number" id="foodInput" placeholder="mese azi" />
+        </div>
 
-        <label for="sleepInput">Somn (țintă: 8 ore):</label>
-        <input type="number" id="sleepInput" min="0" max="8" step="0.1" aria-label="Introdu orele de somn">
-        <progress id="sleep" max="100" value="0"></progress>
+        <div class="bar-container">
+            <label for="water">💧 Water (2L)</label>
+            <progress id="water" max="100" value="0"></progress>
+            <input type="number" id="waterInput" placeholder="litri azi" />
+        </div>
 
-        <label for="sportInput">Sport (țintă: 1 oră):</label>
-        <input type="number" id="sportInput" min="0" max="1" step="0.1" aria-label="Introdu orele de sport">
-        <progress id="sport" max="100" value="0"></progress>
+        <div class="bar-container">
+            <label for="sleep">😴 Sleep (8h)</label>
+            <progress id="sleep" max="100" value="0"></progress>
+            <input type="number" id="sleepInput" placeholder="ore dormite" />
+        </div>
 
-        <label for="stepsInput">Pași (țintă: 10000):</label>
-        <input type="number" id="stepsInput" min="0" max="10000" step="100" aria-label="Introdu numărul de pași">
-        <progress id="steps" max="100" value="0"></progress>
+        <div class="bar-container">
+            <label for="sport">🏃 Sport (1h)</label>
+            <progress id="sport" max="100" value="0"></progress>
+            <input type="number" id="sportInput" placeholder="ore activitate" />
+        </div>
 
-        <label>Nevoi generale:</label>
-        <progress id="nevoi" max="100" value="0"></progress>
-    </div>
+        <div class="bar-container">
+            <label for="steps">👣 Steps (10.000)</label>
+            <progress id="steps" max="100" value="0"></progress>
+            <input type="number" id="stepsInput" placeholder="pași azi" />
+        </div>
 
-    <div class="section">
-        <h2>Relații și Carieră</h2>
-        <label for="relatiiInput">Relații (modificare %):</label>
-        <input type="number" id="relatiiInput" min="-100" max="100" step="1" aria-label="Modifică progresul relațiilor">
-        <progress id="relatii" max="100" value="0"></progress>
+        <div class="bar-container">
+            <label for="nevoi">Scor General Nevoi</label>
+            <progress id="nevoi" max="100" value="0"></progress>
+        </div>
+    </section>
 
-        <label for="carieraInput">Carieră (modificare %):</label>
-        <input type="number" id="carieraInput" min="-100" max="100" step="1" aria-label="Modifică progresul carierei">
-        <progress id="cariera" max="100" value="0"></progress>
-    </div>
+    <!-- Relații -->
+    <section>
+        <h2>💬 Relații</h2>
+        <div class="bar-container">
+            <label for="relatii">Nivel Relații</label>
+            <progress id="relatii" max="100" value="50"></progress>
+            <input type="number" id="relatiiInput" placeholder="+/-" />
+        </div>
+    </section>
+
+    <!-- Carieră -->
+    <section>
+        <h2>💼 Carieră</h2>
+        <div class="bar-container">
+            <label for="cariera">Nivel Carieră</label>
+            <progress id="cariera" max="100" value="50"></progress>
+            <input type="number" id="carieraInput" placeholder="+/-" />
+        </div>
+    </section>
 
     <button onclick="updateBars()">Actualizează</button>
-    <button onclick="exportData()">Exportă Date</button>
-
-    <div id="suggestions">Totul e echilibrat!</div>
-    <canvas id="progressChart"></canvas>
-
-    <script>
-        const CONFIG = {
-            colors: {
-                food: { border: '#ff6384', background: 'rgba(255, 99, 132, 0.2)' },
-                water: { border: '#36a2eb', background: 'rgba(54, 162, 235, 0.2)' },
-                sleep: { border: '#4bc0c0', background: 'rgba(75, 192, 192, 0.2)' },
-                sport: { border: '#9966ff', background: 'rgba(153, 102, 255, 0.2)' },
-                steps: { border: '#ff9f40', background: 'rgba(255, 159, 64, 0.2)' },
-                nevoi: { border: '#ff6384', background: 'rgba(255, 99, 132, 0.2)' },
-                relatii: { border: '#36a2eb', background: 'rgba(54, 162, 235, 0.2)' },
-                cariera: { border: '#4bc0c0', background: 'rgba(75, 192, 192, 0.2)' }
-            },
-            suggestions: {
-                food: '🍽️ Mănâncă o masă sănătoasă!',
-                water: '💧 Bea mai multă apă!',
-                sleep: '😴 Dormi mai mult!',
-                sport: '🏃 Fă puțină mișcare!',
-                steps: '👣 Ieși la o plimbare!',
-                relatii: '💬 Relații jos: sună un prieten!',
-                cariera: '💼 Carieră jos: fă un pas mic azi!'
-            }
-        };
-
-        const subNevoi = [
-            { id: 'food', target: 3 },
-            { id: 'water', target: 2 },
-            { id: 'sleep', target: 8 },
-            { id: 'sport', target: 1 },
-            { id: 'steps', target: 10000 }
-        ];
-
-        const bars = ['nevoi', 'relatii', 'cariera'];
-        const DOM = { inputs: {}, bars: {}, suggestions: null, canvas: null };
-        let chartInstance = null;
-
-        function getElement(id, type = 'input') {
-            const element = document.getElementById(id);
-            if (!element) {
-                console.error(`Element with ID ${id} not found`);
-                return null;
-            }
-            return element;
-        }
-
-        function getStoredData(key, defaultValue = {}) {
-            try {
-                return JSON.parse(localStorage.getItem(key)) || defaultValue;
-            } catch (e) {
-                console.error(`Error parsing ${key} from localStorage:`, e);
-                return defaultValue;
-            }
-        }
-
-        function setStoredData(key, value) {
-            try {
-                localStorage.setItem(key, JSON.stringify(value));
-            } catch (e) {
-                console.error(`Error saving ${key} to localStorage:`, e);
-            }
-        }
-
-        function saveHistory(bar, value) {
-            const today = new Date().toISOString().split('T')[0];
-            const history = getStoredData(bar + '_history');
-            history[today] = value;
-            setStoredData(bar + '_history', history);
-        }
-
-        function updateBars() {
-            let total = 0;
-
-            subNevoi.forEach(nevoie => {
-                const input = DOM.inputs[nevoie.id];
-                const bar = DOM.bars[nevoie.id];
-                if (!input || !bar) return;
-
-                const val = parseFloat(input.value);
-                if (isNaN(val) || val < 0 || val > nevoie.target) {
-                    alert(`Introdu o valoare între 0 și ${nevoie.target} pentru ${nevoie.id}`);
-                    return;
-                }
-
-                const percent = Math.min(100, Math.round((val / nevoie.target) * 100));
-                bar.value = percent;
-                setStoredData(nevoie.id, percent);
-                saveHistory(nevoie.id, percent);
-                input.value = '';
-                total += percent;
-            });
-
-            const scorGeneral = Math.round(total / subNevoi.length);
-            DOM.bars.nevoi.value = scorGeneral;
-            setStoredData('nevoi', scorGeneral);
-            saveHistory('nevoi', scorGeneral);
-
-            ['relatii', 'cariera'].forEach(bar => {
-                const input = DOM.inputs[bar];
-                const progress = DOM.bars[bar];
-                if (!input || !progress) return;
-
-                const change = parseInt(input.value);
-                if (!isNaN(change)) {
-                    let newValue = Math.min(100, Math.max(0, parseInt(progress.value) + change));
-                    progress.value = newValue;
-                    setStoredData(bar, newValue);
-                    saveHistory(bar, newValue);
-                    input.value = '';
-                }
-            });
-
-            setStoredData('lastUpdate', new Date().toISOString().split('T')[0]);
-            showSuggestions();
-            updateChart();
-        }
-
-        function loadProgress() {
-            [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
-                const saved = getStoredData(bar);
-                if (saved !== null && DOM.bars[bar]) {
-                    DOM.bars[bar].value = parseInt(saved);
-                }
-            });
-            checkDailyDecay();
-            updateChart();
-            showSuggestions();
-        }
-
-        function checkDailyDecay() {
-            const today = new Date().toISOString().split('T')[0];
-            const lastUpdate = getStoredData('lastUpdate', today);
-
-            if (lastUpdate !== today) {
-                [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
-                    const progress = DOM.bars[bar];
-                    if (!progress) return;
-                    let newValue = Math.max(0, parseInt(progress.value) - 10);
-                    progress.value = newValue;
-                    setStoredData(bar, newValue);
-                    saveHistory(bar, newValue);
-                });
-                setStoredData('lastUpdate', today);
-            }
-        }
-
-        function showSuggestions() {
-            const suggestions = [];
-
-            subNevoi.forEach(n => {
-                const val = parseInt(DOM.bars[n.id]?.value || 0);
-                if (val < 50) suggestions.push(CONFIG.suggestions[n.id]);
-            });
-
-            ['relatii', 'cariera'].forEach(bar => {
-                const val = parseInt(DOM.bars[bar]?.value || 0);
-                if (val < 50) suggestions.push(CONFIG.suggestions[bar]);
-            });
-
-            if (suggestions.length > 0) {
-                DOM.suggestions.innerHTML = `
-          <ul>
-            ${suggestions.slice(0, 3).map(s => `<li>${s}</li>`).join('')}
-          </ul>
-        `;
-            } else {
-                DOM.suggestions.textContent = 'Totul e echilibrat!';
-            }
-        }
-
-        function updateChart() {
-            const ctx = DOM.canvas?.getContext('2d');
-            if (!ctx) return;
-
-            const dates = [];
-            const data = {};
-
-            [...subNevoi.map(n => n.id), ...bars].forEach(bar => data[bar] = []);
-
-            for (let i = 6; i >= 0; i--) {
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-                dates.push(date.toISOString().split('T')[0]);
-            }
-
-            [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
-                const history = getStoredData(bar + '_history');
-                dates.forEach(date => data[bar].push(history[date] || 0));
-            });
-
-            const chartData = {
-                labels: dates,
-                datasets: [...subNevoi.map(n => ({
-                    label: n.id.charAt(0).toUpperCase() + n.id.slice(1),
-                    data: data[n.id],
-                    borderColor: CONFIG.colors[n.id].border,
-                    backgroundColor: CONFIG.colors[n.id].background,
-                    fill: true
-                })), ...bars.map(bar => ({
-                    label: bar.charAt(0).toUpperCase() + bar.slice(1),
-                    data: data[bar],
-                    borderColor: CONFIG.colors[bar].border,
-                    backgroundColor: CONFIG.colors[bar].background,
-                    fill: true
-                }))]
-            };
-
-            if (chartInstance) {
-                chartInstance.data = chartData;
-                chartInstance.update();
-            } else {
-                chartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: chartData,
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            tooltip: {
-                                callbacks: {
-                                    label: context => `${context.dataset.label}: ${context.raw}%`
-                                }
-                            }
-                        },
-                        scales: {
-                            y: { beginAtZero: true, max: 100 }
-                        }
-                    }
-                });
-            }
-        }
-
-        function exportData() {
-            const data = {
-                progress: {},
-                history: {}
-            };
-            [...subNevoi.map(n => n.id), ...bars].forEach(bar => {
-                data.progress[bar] = getStoredData(bar);
-                data.history[bar] = getStoredData(bar + '_history');
-            });
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'progress_data.json';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function debounce(func, wait) {
-            let timeout;
-            return function (...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
-        }
-
-        window.onload = () => {
-            DOM.suggestions = getElement('suggestions');
-            DOM.canvas = getElement('progressChart', 'canvas');
-            subNevoi.forEach(n => {
-                DOM.inputs[n.id] = getElement(n.id + 'Input');
-                DOM.bars[n.id] = getElement(n.id, 'progress');
-            });
-            bars.forEach(bar => {
-                DOM.inputs[bar] = getElement(bar + 'Input');
-                DOM.bars[bar] = getElement(bar, 'progress');
-            });
-
-            const debouncedUpdateBars = debounce(updateBars, 300);
-            document.querySelectorAll('input').forEach(input => {
-                input.addEventListener('change', debouncedUpdateBars);
-            });
-
-            loadProgress();
-        };
-    </script>
+    <div id="suggestions" class="suggestions"></div>
+    <canvas id="progressChart" style="margin-top: 20px;"></canvas>
 </body>
 
 </html>
